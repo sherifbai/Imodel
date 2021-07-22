@@ -3,11 +3,12 @@ const jwt = require('jsonwebtoken')
 module.exports = async function authRequiredMiddleware(req, res, next) {
   try {
     const token = req.headers['authorization'];
-    console.log('request')
     if (!token) return res.status(401).json({
       errorMessage: 'Authorization token is required'
     })
+    console.log("da")
     const verified = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("net")
     if (verified) {
       req.user = verified.user;
       next();

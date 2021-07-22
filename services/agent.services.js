@@ -2,20 +2,20 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 const { hash, compare } = require("bcryptjs");
 
-exports.getUsers = async (req, res) => {
+exports.getAgents = async (req, res) => {
   try {
     let objects = await User.find();
 
-    const user = [];
+    const agent = [];
 
     objects.map((el) => {
-      if (el.type === "user") {
-        return user.push(el);
+      if (el.type === "agent") {
+        return agent.push(el);
       }
     });
 
     res.json({
-      user: user,
+      agent: agent,
     });
   } catch (e) {
     console.log(e);
@@ -99,7 +99,7 @@ exports.changeInfo = async (req, res) => {
   }
 };
 
-exports.deleteUserProfile = async (req, res) => {
+exports.deleteAgentProfile = async (req, res) => {
   const { _id } = req.params;
 
   try {

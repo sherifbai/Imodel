@@ -1,21 +1,12 @@
-const mongoose = require("mongoose");
-const User = mongoose.model("User");
-const { hash, compare } = require("bcryptjs");
+const mongoose = require("mongoose")
+const Model = mongoose.model("Model")
 
-exports.getUsers = async (req, res) => {
+exports.getModels = async (req, res) => {
   try {
-    let objects = await User.find();
-
-    const user = [];
-
-    objects.map((el) => {
-      if (el.type === "user") {
-        return user.push(el);
-      }
-    });
+    const models = await Model.find();
 
     res.json({
-      user: user,
+      models: models,
     });
   } catch (e) {
     console.log(e);
@@ -29,10 +20,10 @@ exports.getMyInfo = async (req, res) => {
   const { _id } = req.params;
 
   try {
-    const user = await User.findOne({ _id: _id });
+    const model = await Model.findOne({ _id: _id });
 
     res.json({
-      user: user,
+      model: model,
     });
   } catch (e) {
     console.log(e);
@@ -42,7 +33,7 @@ exports.getMyInfo = async (req, res) => {
   }
 };
 
-exports.changeInfo = async (req, res) => {
+exports.changeMyInfo = async (req, res) => {
   const {
     lastName,
     firstName,
@@ -64,7 +55,7 @@ exports.changeInfo = async (req, res) => {
   const { _id } = req.params;
 
   try {
-    await User.updateOne(
+    const model = await Model.updateOne(
       {
         _id,
       },
@@ -89,7 +80,7 @@ exports.changeInfo = async (req, res) => {
       }
     ).lean();
     res.json({
-      message: "Пользователь успешно изменён",
+      message: "Пользователь успешно изменён"
     });
   } catch (e) {
     console.log(e);
@@ -99,33 +90,14 @@ exports.changeInfo = async (req, res) => {
   }
 };
 
-exports.deleteUserProfile = async (req, res) => {
+exports.deleteModelProfile = async (req, res) => {
   const { _id } = req.params;
 
   try {
-    await User.findByIdAndRemove({ _id: _id });
-    res.json({
-      message: "Пользователь успешно удален",
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({
-      message: "Iternal Server Error",
-    });
-  }
-};
-
-exports.checkMyRef = async (req, res) => {
-  const { _id } = req.params;
-
-  try {
-    const user = await User.findOne({ _id: _id });
-
-    const ref_count = user.countReferals;
-
-    res.json({
-      ref_count: ref_count,
-    });
+      await Model.findByIdAndRemove({_id: _id})
+      res.json({
+          message: "Пользователь успешно удален",
+      })
   } catch (e) {
     console.log(e);
     res.status(500).json({
