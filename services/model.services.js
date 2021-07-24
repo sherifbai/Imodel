@@ -1,5 +1,5 @@
-const mongoose = require("mongoose")
-const Model = mongoose.model("Model")
+const mongoose = require("mongoose");
+const Model = mongoose.model("Model");
 
 exports.getModels = async (req, res) => {
   try {
@@ -17,7 +17,7 @@ exports.getModels = async (req, res) => {
 };
 
 exports.getMyInfo = async (req, res) => {
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
     const model = await Model.findOne({ _id: _id });
@@ -52,7 +52,7 @@ exports.changeMyInfo = async (req, res) => {
     chest,
   } = req.body;
 
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
     const model = await Model.updateOne(
@@ -80,7 +80,7 @@ exports.changeMyInfo = async (req, res) => {
       }
     ).lean();
     res.json({
-      message: "Пользователь успешно изменён"
+      message: "Пользователь успешно изменён",
     });
   } catch (e) {
     console.log(e);
@@ -91,13 +91,13 @@ exports.changeMyInfo = async (req, res) => {
 };
 
 exports.deleteModelProfile = async (req, res) => {
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
-      await Model.findByIdAndRemove({_id: _id})
-      res.json({
-          message: "Пользователь успешно удален",
-      })
+    await Model.findByIdAndRemove({ _id: _id });
+    res.json({
+      message: "Пользователь успешно удален",
+    });
   } catch (e) {
     console.log(e);
     res.status(500).json({

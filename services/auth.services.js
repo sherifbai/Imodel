@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
-const Model = mongoose.model("Model")
+const Model = mongoose.model("Model");
 const jwt = require("jsonwebtoken");
 const speakeasy = require("speakeasy");
 const crypto = require("crypto");

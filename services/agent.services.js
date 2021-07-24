@@ -26,7 +26,7 @@ exports.getAgents = async (req, res) => {
 };
 
 exports.getMyInfo = async (req, res) => {
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
     const user = await User.findOne({ _id: _id });
@@ -61,7 +61,7 @@ exports.changeInfo = async (req, res) => {
     chest,
   } = req.body;
 
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
     await User.updateOne(
@@ -100,7 +100,7 @@ exports.changeInfo = async (req, res) => {
 };
 
 exports.deleteAgentProfile = async (req, res) => {
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
     await User.findByIdAndRemove({ _id: _id });
@@ -116,7 +116,7 @@ exports.deleteAgentProfile = async (req, res) => {
 };
 
 exports.checkMyRef = async (req, res) => {
-  const { _id } = req.params;
+  const { _id } = req.user;
 
   try {
     const user = await User.findOne({ _id: _id });

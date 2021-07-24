@@ -73,8 +73,8 @@ const modelsSchema = new Schema(
       ref: "User",
     },
     code: {
-        type: String
-    }
+      type: String,
+    },
   },
   {
     versionKey: false,

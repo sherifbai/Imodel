@@ -10,49 +10,49 @@ const userSchema = new Schema(
       default: "active",
     },
     lastName: {
-      type: String
+      type: String,
     },
     firstName: {
-      type:String
+      type: String,
     },
     gender: {
       type: String,
     },
     city: {
-      type: String
+      type: String,
     },
     region: {
-      type: String
+      type: String,
     },
     age: {
-      type: String
+      type: String,
     },
     height: {
-      type: String
+      type: String,
     },
     hairColor: {
-      type: String
+      type: String,
     },
     eyes: {
-      type: String
+      type: String,
     },
     shoeSize: {
-      type: String
+      type: String,
     },
     dressSize: {
-      type: String
+      type: String,
     },
     about: {
-      type: String
+      type: String,
     },
     hip: {
-      type: String
+      type: String,
     },
     waist: {
-      type: String
+      type: String,
     },
     chest: {
-      type: String
+      type: String,
     },
     type: {
       type: String,
@@ -62,7 +62,7 @@ const userSchema = new Schema(
       type: String,
     },
     ref_code: {
-      type: String
+      type: String,
     },
     password: {
       type: String,
@@ -74,8 +74,8 @@ const userSchema = new Schema(
     },
     countReferals: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   {
     versionKey: false,
