@@ -16,9 +16,9 @@ app.use(cors());
 require("@connections/mongodb.connection");
 
 /* API ENDPOINTS */
-const userServices = require("@services/user.services");
+const userServices = require("@services/user/user.services");
 const modelServices = require("@services/model.services");
-const agentServices = require("./services/agent/agent.services");
+const agentServices = require("@services/agent/agent.services");
 // const modelServices = require("@services/employer.services");
 const authServices = require("@services/auth.services");
 
@@ -31,9 +31,9 @@ app.post("/auth/login", authServices.login);
 app.post("/auth/accept_reg", authServices.proof_register);
 
 app.get("/user/getUsers", authRequiredMiddleware, userServices.getUsers);
-app.post("/user/getMyInfo", authRequiredMiddleware, userServices.getMyInfo);
-app.post("/user/changeMyInfo", authRequiredMiddleware, userServices.changeInfo);
-app.delete( "/user/dellprofile", authRequiredMiddleware, userServices.deleteUserProfile);
+app.get("/user/getMyInfo", authRequiredMiddleware, userServices.getInfo);
+app.put("/user/changeMyInfo", authRequiredMiddleware, userServices.changeInfo);
+app.delete( "/user/dellprofile", authRequiredMiddleware, userServices.deleteInfo);
 
 app.get("/agent/getAgents", is10, authRequiredMiddleware, agentServices.getAgents);
 app.get("/agent/getMyInfo", is10, authRequiredMiddleware, agentServices.getInfo);

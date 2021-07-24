@@ -2,21 +2,20 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
 module.exports = async (req, res) => {
-  const { _id } = req.user;
-
   try {
-    const agent = await User.findOne({ _id: _id });
+    let objects = await User.find();
 
-    if (!(agent.type === "agent")) {
-      return res.json({
-        message: "Agent not found",
-      });
-    }
+    const user = [];
 
-    agent.password = undefined;
+    objects.map((el) => {
+      if (el.type === "user") {
+        el.password = undefined;
+        return user.push(el);
+      }
+    });
 
     res.json({
-      agent: agent,
+      user: user,
     });
   } catch (e) {
     console.log(e);

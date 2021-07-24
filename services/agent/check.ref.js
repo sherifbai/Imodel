@@ -5,15 +5,15 @@ module.exports = async (req, res) => {
   const { _id } = req.user;
 
   try {
-    const user = await User.findOne({ _id: _id });
+    const agent = await User.findOne({ _id: _id });
 
-    if (!user) {
+    if (!(agent.type === "agent")) {
       return res.json({
         message: "Agent not found"
       });
     }
 
-    const ref_count = user.countReferals;
+    const ref_count = agent.countReferals;
 
     res.json({
       ref_count: ref_count,

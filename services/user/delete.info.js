@@ -5,18 +5,17 @@ module.exports = async (req, res) => {
   const { _id } = req.user;
 
   try {
-    const agent = await User.findOne({ _id: _id });
+    const user = await User.findOne({ _id: _id });
 
-    if (!(agent.type === "agent")) {
+    if (!(user.type === "user")) {
       return res.json({
-        message: "Agent not found",
+        message: "User not found",
       });
     }
 
-    agent.password = undefined;
-
+    await User.findByIdAndRemove({ _id: _id });
     res.json({
-      agent: agent,
+      message: "Пользователь успешно удален",
     });
   } catch (e) {
     console.log(e);
