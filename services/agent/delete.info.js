@@ -1,3 +1,6 @@
+const mongoose = require('mongoose')
+const User = mongoose.model('User')
+
 module.exports = async (req, res) => {
   const { _id } = req.user;
 
