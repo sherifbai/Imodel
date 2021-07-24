@@ -10,8 +10,11 @@ module.exports = async function authRequiredMiddleware(req, res, next) {
     }
     const token = authHeader.split(" ")[1];
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    if (verified) {
+    if (verified.user) {
       req.user = verified.user;
+      next();
+    } else if (verified.model) {
+      req.user = verified.model;
       next();
     } else {
       res.sendStatus(401);

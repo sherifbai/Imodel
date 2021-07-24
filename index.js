@@ -17,7 +17,7 @@ require("@connections/mongodb.connection");
 
 /* API ENDPOINTS */
 const userServices = require("@services/user/user.services");
-const modelServices = require("@services/model.services");
+const modelServices = require("@services/model/model.services");
 const agentServices = require("@services/agent/agent.services");
 // const modelServices = require("@services/employer.services");
 const authServices = require("@services/auth.services");
@@ -42,8 +42,8 @@ app.put("/agent/changeMyInfo", is10, authRequiredMiddleware, agentServices.chang
 app.delete("/agent/dellprofile", is10, authRequiredMiddleware, agentServices.deleteInfo);
 
 app.get("/model/getModels", authRequiredMiddleware, modelServices.getModels);
-app.post("/model/getMyInfo", authRequiredMiddleware, modelServices.getMyInfo);
-app.post("/model/changeMyInfo", authRequiredMiddleware, modelServices.changeMyInfo);
-app.delete("/model/dellprofile", authRequiredMiddleware, modelServices.deleteModelProfile);
+app.get("/model/getMyInfo", authRequiredMiddleware, modelServices.getInfo);
+app.put("/model/changeMyInfo", authRequiredMiddleware, modelServices.changeInfo);
+app.delete("/model/dellprofile", authRequiredMiddleware, modelServices.deleteInfo);
 
 let server = app.listen(3000);
