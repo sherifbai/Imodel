@@ -74,7 +74,6 @@ const userSchema = new Schema(
     },
     countReferals: {
       type: Number,
-      default: 0,
     },
   },
   {

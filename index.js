@@ -20,10 +20,10 @@ const userServices = require("@services/user/user.services");
 const modelServices = require("@services/model/model.services");
 const agentServices = require("@services/agent/agent.services");
 // const modelServices = require("@services/employer.services");
-const authServices = require("@services/auth.services");
+const authServices = require("@services/auth/auth.services");
 
 const authRequiredMiddleware = require("@middlewares/authRequired");
-const is10 = require("./middlewares/is10");
+const is10 = require("@middlewares/is10");
 const uploadSettings = require("@uploads"); // потом понадобиться , расскажу
 
 app.post("/auth/register", authServices.register);
