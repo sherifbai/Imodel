@@ -15,7 +15,7 @@ module.exports = async function authRequiredMiddleware(req, res, next) {
     if (verified.user) {
       req.user = verified.user;
       if (req.user.type === "agent") {
-        const agent = await User.find({ _id: req.user._id, countReferals: { $gt: 9 } }).exec();
+        const agent = await User.find({ _id: req.user._id, countReferals: { $gte: 10 } }).exec();
         if (!agent.length) {
           return res.json({
             message: "Referals must be greater than 10",
