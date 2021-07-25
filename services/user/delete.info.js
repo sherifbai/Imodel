@@ -5,9 +5,9 @@ module.exports = async (req, res) => {
   const { _id } = req.user;
 
   try {
-    const user = await User.findOne({ _id: _id });
+    const user = await User.findOne({ _id: _id , type: "user"}).exec();
 
-    if (!(user.type === "user")) {
+    if (!user) {
       return res.json({
         message: "User not found",
       });
