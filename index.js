@@ -23,7 +23,6 @@ const agentServices = require("@services/agent/agent.services");
 const authServices = require("@services/auth/auth.services");
 
 const authRequiredMiddleware = require("@middlewares/authRequired");
-const is10 = require("@middlewares/is10");
 const uploadSettings = require("@uploads"); // потом понадобиться , расскажу
 
 app.post("/auth/register", authServices.register);
@@ -35,11 +34,11 @@ app.get("/user/getMyInfo", authRequiredMiddleware, userServices.getInfo);
 app.put("/user/changeMyInfo", authRequiredMiddleware, userServices.changeInfo);
 app.delete( "/user/dellprofile", authRequiredMiddleware, userServices.deleteInfo);
 
-app.get("/agent/getAgents", is10, authRequiredMiddleware, agentServices.getAgents);
-app.get("/agent/getMyInfo", is10, authRequiredMiddleware, agentServices.getInfo);
-app.get("/agent/chekmyref", is10, authRequiredMiddleware, agentServices.checkMyRef);
-app.put("/agent/changeMyInfo", is10, authRequiredMiddleware, agentServices.changeInfo);
-app.delete("/agent/dellprofile", is10, authRequiredMiddleware, agentServices.deleteInfo);
+app.get("/agent/getAgents", authRequiredMiddleware, agentServices.getAgents);
+app.get("/agent/getMyInfo", authRequiredMiddleware, agentServices.getInfo);
+app.get("/agent/chekmyref", authRequiredMiddleware, agentServices.checkMyRef);
+app.put("/agent/changeMyInfo", authRequiredMiddleware, agentServices.changeInfo);
+app.delete("/agent/dellprofile", authRequiredMiddleware, agentServices.deleteInfo);
 
 app.get("/model/getModels", authRequiredMiddleware, modelServices.getModels);
 app.get("/model/getMyInfo", authRequiredMiddleware, modelServices.getInfo);
