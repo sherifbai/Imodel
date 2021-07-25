@@ -3,16 +3,7 @@ const User = mongoose.model("User");
 
 module.exports = async (req, res) => {
   try {
-    let objects = await User.find();
-
-    const user = [];
-
-    objects.map((el) => {
-      if (el.type === "user") {
-        el.password = undefined;
-        return user.push(el);
-      }
-    });
+    const user = await User.find({ type: "user" }).exec();
 
     res.json({
       user: user,

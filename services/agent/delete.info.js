@@ -6,9 +6,10 @@ module.exports = async (req, res) => {
 
   try {
 
-    const agent = await User.findOne({ _id: _id});
+    
+    const agent = await User.findOne({ _id: _id , type: "agent"}).exec();
 
-    if (!(agent.type === "agent")) {
+    if (!agent) {
       return res.json({
         message: "Agent not found"
       })
