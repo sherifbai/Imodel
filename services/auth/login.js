@@ -9,8 +9,8 @@ module.exports = async (req, res) => {
   try {
     const { phone, password } = req.body;
 
-    let user = await User.findOne({ phone: phone }).select("+password");
-    let model = await Model.findOne({ phone: phone }).select("+password");
+    let user = await User.findOne({ phone: phone });
+    let model = await Model.findOne({ phone: phone });
 
     if (!user && !model) {
       return res.status(422).json({

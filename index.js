@@ -28,6 +28,7 @@ const uploadSettings = require("@uploads"); // потом понадобитьс
 app.post("/auth/register", authServices.register);
 app.post("/auth/login", authServices.login);
 app.post("/auth/accept_reg", authServices.proof_register);
+app.post("/auth/reseatpass", authRequiredMiddleware, authServices.reseat_password);
 
 app.get("/user/getUsers", authRequiredMiddleware, userServices.getUsers);
 app.get("/user/getMyInfo", authRequiredMiddleware, userServices.getInfo);
