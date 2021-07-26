@@ -3,7 +3,7 @@ const Model = mongoose.model("Model");
 
 module.exports = async (req, res) => {
   try {
-    const models = await Model.find();
+    const models = await Model.find({}, ["firstName", "rating"]);
 
     res.json({
       models: models,
