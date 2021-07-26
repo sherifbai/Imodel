@@ -3,7 +3,7 @@ const User = mongoose.model("User");
 
 module.exports = async (req, res) => {
   try {
-    const agent = await User.find({type: "agent"}).exec()
+    const agent = await User.find({type: "agent"}, ["firstName", "rating"]).exec()
 
     res.json({
       agent: agent,
