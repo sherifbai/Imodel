@@ -19,7 +19,7 @@ require("@connections/mongodb.connection");
 const userServices = require("@services/user/user.services");
 const modelServices = require("@services/model/model.services");
 const agentServices = require("@services/agent/agent.services");
-// const modelServices = require("@services/employer.services");
+const orderServices = require("@services/order/order.services");
 const authServices = require("@services/auth/auth.services");
 
 const authRequiredMiddleware = require("@middlewares/authRequired");
@@ -30,7 +30,7 @@ app.post("/auth/login", authServices.login);
 app.post("/auth/accept_reg", authServices.proof_register);
 app.post("/auth/reseatpass", authRequiredMiddleware, authServices.reseat_password);
 app.post("/auth/sendcode", authServices.send_code);
-app.post("/auth/dischargepass", authServices.discharge_password)
+app.post("/auth/dischargepass", authServices.discharge_password);
 
 app.get("/user/getUsers", authRequiredMiddleware, userServices.getUsers);
 app.get("/user/getMyInfo", authRequiredMiddleware, userServices.getInfo);
@@ -47,5 +47,7 @@ app.get("/model/getModels", authRequiredMiddleware, modelServices.getModels);
 app.get("/model/getMyInfo", authRequiredMiddleware, modelServices.getInfo);
 app.put("/model/changeMyInfo", authRequiredMiddleware, modelServices.changeInfo);
 app.delete("/model/dellprofile", authRequiredMiddleware, modelServices.deleteInfo);
+
+app.post("/order/createOrder", authRequiredMiddleware, orderServices.create_order);
 
 let server = app.listen(3000);

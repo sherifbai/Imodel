@@ -21,7 +21,7 @@ const orderSchema = new Schema(
     },
     budget: {
       type: Number,
-      required: true
+      required: true,
     },
     description: {
       type: String,
@@ -34,7 +34,11 @@ const orderSchema = new Schema(
     takenBy: {
       type: Schema.Types.ObjectId,
       ref: "Model",
-    }
+    },
+    orderBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     versionKey: false,
