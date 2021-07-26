@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   const { _id } = req.user;
 
   try {
-    const model = await Model.findOne({ _id: _id, type: "model"}).exec();
+    const model = await Model.findOne({ _id: _id, type: "model" });
 
     if (!model) {
       return res.json({

@@ -75,6 +75,11 @@ const modelsSchema = new Schema(
     code: {
       type: String,
     },
+    rated: [Number],
+    rating: {
+      type: Number,
+      default: 0,
+    }
   },
   {
     versionKey: false,
