@@ -51,6 +51,7 @@ app.post("/model/take_order", authRequiredMiddleware, modelServices.take_order);
 
 app.post("/order/createOrder", authRequiredMiddleware, orderServices.create_order);
 app.get("/order/getmyorders_active", authRequiredMiddleware, orderServices.get_active_orders);
+app.get("/order/getmyorders_complete", authRequiredMiddleware, orderServices.get_compete_orders);
 app.post("/order/complete_order", authRequiredMiddleware, orderServices.complete_order);
 
 let server = app.listen(3000);
