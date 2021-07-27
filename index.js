@@ -47,8 +47,10 @@ app.get("/model/getModels", authRequiredMiddleware, modelServices.getModels);
 app.get("/model/getMyInfo", authRequiredMiddleware, modelServices.getInfo);
 app.put("/model/changeMyInfo", authRequiredMiddleware, modelServices.changeInfo);
 app.delete("/model/dellprofile", authRequiredMiddleware, modelServices.deleteInfo);
+app.post("/model/take_order", authRequiredMiddleware, modelServices.take_order);
 
 app.post("/order/createOrder", authRequiredMiddleware, orderServices.create_order);
 app.get("/order/getmyorders_active", authRequiredMiddleware, orderServices.get_active_orders);
+app.post("/order/complete_order", authRequiredMiddleware, orderServices.complete_order);
 
 let server = app.listen(3000);
