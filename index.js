@@ -49,5 +49,6 @@ app.put("/model/changeMyInfo", authRequiredMiddleware, modelServices.changeInfo)
 app.delete("/model/dellprofile", authRequiredMiddleware, modelServices.deleteInfo);
 
 app.post("/order/createOrder", authRequiredMiddleware, orderServices.create_order);
+app.get("/order/getmyorders_active", authRequiredMiddleware, orderServices.get_active_orders);
 
 let server = app.listen(3000);
