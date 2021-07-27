@@ -54,5 +54,6 @@ app.get("/order/getmyorders_active", authRequiredMiddleware, orderServices.get_a
 app.get("/order/get_info", authRequiredMiddleware, orderServices.get_info);
 app.get("/order/getmyorders_complete", authRequiredMiddleware, orderServices.get_compete_orders);
 app.post("/order/complete_order", authRequiredMiddleware, orderServices.complete_order);
+app.put("/order/update_info", authRequiredMiddleware, orderServices.update_info);
 
 let server = app.listen(3000);
